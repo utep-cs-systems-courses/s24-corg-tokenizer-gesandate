@@ -18,11 +18,15 @@ int non_space_char(char c) {
 
 
 char *token_start(char *str) {
-  char* npoint = (char*)malloc(sizeof(char));
-  if (npoint == NULL){
-    return npoint;
+  while (*str != '\n' && *str == ' '){
+    str++;
   }
-  return npoint;
+
+  if (*str == '\0') {
+    return NULL;
+  }
+
+  return str;
 };
 
 char *token_terminator(char *tokex) {
@@ -30,16 +34,28 @@ char *token_terminator(char *tokex) {
 };
 
 int count_tokens(char *str) {
+  if (str == NULL){
+    return 0;
+  }
   int count = 0;
   char* point = token_start(str);
-  do{
-    char* point = realloc(point, sizeof(char));
+  while (*point != '\n'){
+    while (*point == ' '){
+      point++;
+    }
+  
+    if (*point == '\n'){
+      break;
+    }
     count++;
-  }while(point != NULL);
-  printf("NULL POINTER");
+
+    while (*point != ' ' && *point != '\n'){
+      point++;
+    }
+  }
     
   return count;
-};
+}
 
 char *copy_str(char *inStr, short len) {};
 
@@ -50,6 +66,6 @@ void print_tokens(char **tokens) {};
 void free_tokens(char **tokens) {};
 
 int main(){
-  char* str = "Hello World";
+  char* str = "Hello World Twenty Seventy Seven";
   printf("%d\n", count_tokens(str));
 }
