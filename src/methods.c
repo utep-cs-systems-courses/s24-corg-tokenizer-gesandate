@@ -29,8 +29,12 @@ char *token_start(char *str) {
   return str;
 };
 
-char *token_terminator(char *tokex) {
+char *token_terminator(char *str) {
   //return token if not ' '
+  while (*str != ' ' && *str != '\0'){
+    str++;
+  }
+  return str;
 };
 
 int count_tokens(char *str) {
@@ -57,7 +61,19 @@ int count_tokens(char *str) {
   return count;
 }
 
-char *copy_str(char *inStr, short len) {};
+char *copy_str(char *inStr, short len) {
+  char* nBlock = (char *)malloc((len + 1)* sizeof(char));
+  if (nBlock == NULL){
+    return NULL;
+  }
+  for (int i = 0; i < len && inStr[i] != '\0'; i++){
+    nBlock[i] = inStr[i];
+  }
+
+  nBlock[len] = '\0';
+
+  return nBlock;
+};
 
 char **tokenize(char* str) {};
 
