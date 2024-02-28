@@ -75,7 +75,12 @@ char *copy_str(char *inStr, short len) {
   return nBlock;
 };
 
-char **tokenize(char* str) {};
+char **tokenize(char* str) {
+  
+  char **ptrarr = (char**)malloc(100 * sizeof(char*));
+  char  *ptr    = token_start(str);
+  
+};
 
 void print_tokens(char **tokens) {};
 
