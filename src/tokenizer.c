@@ -76,10 +76,41 @@ char *copy_str(char *inStr, short len) {
 };
 
 char **tokenize(char* str) {
-  
+  int amount = count_tokens(str);
   char **ptrarr = (char**)malloc(100 * sizeof(char*));
   char  *ptr    = token_start(str);
+
+  if (ptrarr == NULL){
+    return NULL;
+  }
+
+  char *start, *end;
+  int tIdx;
   
+  while (*str != '\0'){
+    start = token_start(str);
+    if (start == NULL){
+
+      break;
+    }
+    end = token_terminator(start);
+
+    int tokLen = end - start;
+    ptrarr[tIdx] = copy_str(start, tokLen);
+
+    if (ptrarr[tIdx] == NULL){
+      
+      for(int i = 0; i < tIdx; i++) {
+	free(ptrarr[i]);
+      }
+      free(ptrarr);
+      return NULL;
+    }
+
+    tIdx++;
+    str = end;
+  }
+  return ptrarr;
 };
 
 void print_tokens(char **tokens) {};
