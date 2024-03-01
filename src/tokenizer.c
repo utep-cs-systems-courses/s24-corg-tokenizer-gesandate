@@ -90,34 +90,42 @@ char **tokenize(char* str) {
   while (*str != '\0'){
     start = token_start(str);
     if (start == NULL){
-
+      //printf("%s\n","Check 1");
       break;
     }
     end = token_terminator(start);
 
     int tokLen = end - start;
     ptrarr[tIdx] = copy_str(start, tokLen);
-
-    if (ptrarr[tIdx] == NULL){
+    //printf("%s\n","Check 2");
+    if (ptrarr[tIdx] == "\0"){
       
       for(int i = 0; i < tIdx; i++) {
 	free(ptrarr[i]);
       }
       free(ptrarr);
+      //printf("%s\n","Check 3");
       return NULL;
     }
-
+    //printf("%s\n",ptrarr[tIdx]);
     tIdx++;
     str = end;
   }
+  //printf("%s\n","Check 4");
   return ptrarr;
 };
 
-void print_tokens(char **tokens) {};
+void print_tokens(char **tokens) {
+  for (int i = 0; *tokens[i] != '\0'; i++){
+    printf("%s\n", tokens[i]);
+  }
+};
 
 void free_tokens(char **tokens) {};
 
 int main(){
   char* str = "Hello World Twenty Seventy Seven";
   printf("%d\n", count_tokens(str));
+
+  print_tokens(tokenize(str));
 }
