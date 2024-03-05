@@ -7,6 +7,8 @@ int main()
   printf("Welcome! Type a phrase to tokenize!\n");
   scanf("%99[^\n]", input);
   //printf("%s\n", input);
-  char* str = input;
-  print_tokens(tokenize(str));
+  char *str = input;
+  char **tokens = tokenize(str);
+  print_tokens(tokens);
+  //free_tokens(arr);
 }
