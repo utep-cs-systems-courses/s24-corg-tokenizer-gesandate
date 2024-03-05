@@ -108,13 +108,13 @@ char **tokenize(char* str) {
 };
 
 void print_tokens(char **tokens) {
-  for (int i = 0; *tokens[i] != '\0'; i++){
+  for (int i = 0; tokens[i] != NULL; i++){
     printf("%s\n", tokens[i]);
   }
 };
 
 void free_tokens(char **tokens) {
-  for (int i = 0; *tokens[i] != '\0'; i++){
+  for (int i = 0; tokens[i] != NULL; i++){
     free(tokens[i]);
   }
   free(tokens);
