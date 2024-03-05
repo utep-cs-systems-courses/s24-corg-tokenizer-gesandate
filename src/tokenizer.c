@@ -119,11 +119,11 @@ void free_tokens(char **tokens) {
   }
   free(tokens);
 };
-
+/*
 int main(){
   char* str = "Hello World Twenty Seventy Seven";
   printf("%d\n", count_tokens(str));
   char **tokens = tokenize(str);
   print_tokens(tokens);
   free_tokens(tokens);
-}
+}*/
