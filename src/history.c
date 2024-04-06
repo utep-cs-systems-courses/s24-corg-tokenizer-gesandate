@@ -10,6 +10,9 @@ List* init_history(){
 }
 
 void add_history(List *list, char *str){
+  if(list == NULL || str == NULL){
+    return;
+  }
   //looking for space to place the items
   Item *head = list->root;
   Item *arr  = (Item*)malloc(sizeof(Item));
@@ -45,6 +48,9 @@ char *get_history(List *list, int id){
 }
 
 void print_history(List *list){
+  if (list == NULL || list->root == NULL){
+    return;
+  }
   Item *curr = list->root;
   /*
   for (int i = 0; curr->next != NULL; i++){
@@ -52,23 +58,28 @@ void print_history(List *list){
   }
   */
   //free_history(list);
-  int i = 0;
+  //int i = 0;
   while (curr != NULL){
-    printf("%c", get_history(list,i));
+    printf("%s", curr->str);
+    curr = curr->next;
+    /*
     if (curr->next != NULL){
-      curr = curr->next;
-      i++;
-    }
+    curr = curr->next;
+      //i++;
+    }*/
   }
 }
 
 void free_history(List *list){
+  if (list == NULL){
+    return;
+  }
   Item *curr = list->root;
   while (curr != NULL){
     Item *temp = curr;
-    if (curr->next != NULL){
-      curr = curr->next;
-    }
+    //if (curr->next != NULL){
+    curr = curr->next;
+      //}
     free(temp->str);
     free(temp);
   }
