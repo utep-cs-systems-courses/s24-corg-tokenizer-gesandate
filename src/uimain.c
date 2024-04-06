@@ -17,28 +17,42 @@ int main()
   //List *history = init_history();
   add_history(history, str);
   tokens = tokenize(str);
+
+ print_tokens:
   print_tokens(tokens);
   //free_tokens(tokens);
   //free_history(history);
+  
  options:
-  printf("Type 'H' to view history,'Q' to quit, or 'T' to tokenize another phrase!\n");
+  printf("Type 'H' to view history, 'P' to print tokens again,'Q' to quit, or 'T' to tokenize another phrase!\n");
   char input2;
-  scanf("%99[^\n]", input2);
-  switch(input2){
+  scanf(" %c", &input2);
+  switch( input2 ){
   case 'Q':
     goto end;
-  
+    break;
+    
   case 'T':
     goto tokenize;
+    break;
   
   case 'H':
     print_history(history);
+    goto end;
+    break;
 
+  case 'P':
+    goto print_tokens;
+    break;
+    
   default:
     printf("Unrecognized option, please try again!");
     goto options;
-  }
+    break;
+    
+ }
  end:
   free_tokens(tokens);
   free_history(history);
+  return 0;
 }
